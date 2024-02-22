@@ -15,8 +15,7 @@ function URLModifier(customKey)
             var currentLinkUrl = $(this).attr('href');
             if (typeof currentLinkUrl !== "undefined") //Anchor Links
             {
-                searchKeyWordUrl += index;
-                var modifiedUrl = currentLinkUrl + (currentLinkUrl.match(/\?/) ? '&' : '?') + customKey + '=' + searchKeyWordUrl;
+                var modifiedUrl = currentLinkUrl + (currentLinkUrl.match(/\?/) ? '&' : '?') + customKey + '=' + searchKeyWordUrl + (index + 1);
                 $(this).attr('href', modifiedUrl);
             } 
             else // Image Links
