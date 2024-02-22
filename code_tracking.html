@@ -10,7 +10,7 @@ function URLModifier(customKey)
     var searchKeyWordUrl = getParamFromURL(searchKeyWord);
     if(searchKeyWordUrl)
     {
-        searchKeyWordUrl = searchKeyWordUrl + '_optin1';
+        searchKeyWordUrl = searchKeyWordUrl + '_option1';
         $('a').each(function() {
             var currentLinkUrl = $(this).attr('href');
             if (typeof currentLinkUrl !== "undefined") //Anchor Links
