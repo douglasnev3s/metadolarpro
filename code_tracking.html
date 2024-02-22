@@ -17,10 +17,10 @@ function URLModifier(customKey)
             {
                 var modifiedUrl = currentLinkUrl + (currentLinkUrl.match(/\?/) ? '&' : '?') + customKey + '=' + searchKeyWordUrl;
                 $(this).attr('href', modifiedUrl);
-            }  
-            var currentImgLinkUrl = $(this).attr('data-imagelink');
-            if (typeof currentImgLinkUrl !== "undefined") // Image Links
+            } 
+            else // Image Links
             {
+                var currentImgLinkUrl = $(this).attr('data-imagelink');
                 var modifiedImgUrl = currentImgLinkUrl + (currentImgLinkUrl.match(/\?/) ? '&' : '?') + customKey + '=' + searchKeyWordUrl;
                 $(this).attr('data-imagelink', modifiedImgUrl);
             }
