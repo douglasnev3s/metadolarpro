@@ -11,7 +11,7 @@ function URLModifier(customKey)
     if(searchKeyWordUrl)
     {
         searchKeyWordUrl = searchKeyWordUrl + '_option';
-        $('a').each(function() {
+        $('a').each(function(index) {
             var currentLinkUrl = $(this).attr('href');
             if (typeof currentLinkUrl !== "undefined") //Anchor Links
             {
