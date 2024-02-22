@@ -2,6 +2,10 @@
 
 jQuery(document).ready(function($){
     URLModifier("tid"); // replace VTID to any key
+    // Adicionando evento de clique para dispositivos móveis
+    $('a').on('click', function () {
+        URLModifier("tid");
+    });
 });
 
 function URLModifier(customKey)
