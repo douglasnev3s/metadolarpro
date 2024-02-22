@@ -10,11 +10,12 @@ function URLModifier(customKey)
     var searchKeyWordUrl = getParamFromURL(searchKeyWord);
     if(searchKeyWordUrl)
     {
-        searchKeyWordUrl = searchKeyWordUrl + '_option1';
+        searchKeyWordUrl = searchKeyWordUrl + '_option';
         $('a').each(function() {
             var currentLinkUrl = $(this).attr('href');
             if (typeof currentLinkUrl !== "undefined") //Anchor Links
             {
+                searchKeyWordUrl += index;
                 var modifiedUrl = currentLinkUrl + (currentLinkUrl.match(/\?/) ? '&' : '?') + customKey + '=' + searchKeyWordUrl;
                 $(this).attr('href', modifiedUrl);
             } 
