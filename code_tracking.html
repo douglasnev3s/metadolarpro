@@ -1,41 +1,37 @@
 <script>
 
-jQuery(document).ready(function($){
+document.addEventListener('DOMContentLoaded', function () {
     URLModifier("tid"); // replace VTID to any key
-    // Adicionando evento de clique para dispositivos móveis
-    $('a').on('click', function () {
-        URLModifier("tid");
-    });
 });
 
-function URLModifier(customKey)
-{
+function URLModifier(customKey) {
     var searchKeyWord = 'utm_campaign'; // replace utm_campaign to any key you want to search for
     var searchKeyWordUrl = getParamFromURL(searchKeyWord);
-    if(searchKeyWordUrl)
-    {
+
+    if (searchKeyWordUrl) {
         searchKeyWordUrl = searchKeyWordUrl + '_option';
-        $('a').each(function(index) {
-            var currentLinkUrl = $(this).attr('href');
-            if (typeof currentLinkUrl !== "undefined") //Anchor Links
+
+        var links = document.querySelectorAll('a');
+        links.forEach(function (link, index) {
+            var currentLinkUrl = link.href;
+
+            if (typeof currentLinkUrl !== "undefined") // Anchor Links
             {
                 var modifiedUrl = currentLinkUrl + (currentLinkUrl.match(/\?/) ? '&' : '?') + customKey + '=' + searchKeyWordUrl + (index + 1);
-                $(this).attr('href', modifiedUrl);
-            } 
-            else // Image Links
+                link.href = modifiedUrl;
+            } else // Image Links
             {
-                var currentImgLinkUrl = $(this).attr('data-imagelink');
-                var modifiedImgUrl = currentImgLinkUrl + (currentImgLinkUrl.match(/\?/) ? '&' : '?') + customKey + '=' + searchKeyWordUrl;
-                $(this).attr('data-imagelink', modifiedImgUrl);
+                var currentImgLinkUrl = link.getAttribute('data-imagelink');
+                var modifiedImgUrl = currentImgLinkUrl + (currentImgLinkUrl && currentImgLinkUrl.match(/\?/) ? '&' : '?') + customKey + '=' + searchKeyWordUrl;
+                link.setAttribute('data-imagelink', modifiedImgUrl);
             }
         });
     }
 }
 
-function getParamFromURL(t)
-{
-    var a = new RegExp("[?&]"+t+"=([^&#]*)").exec(window.location.href);
-    return null===a?null:a[1]
+function getParamFromURL(t) {
+    var match = new RegExp("[?&]" + t + "=([^&#]*)").exec(window.location.href);
+    return match ? match[1] : null;
 }
 
 </script>
